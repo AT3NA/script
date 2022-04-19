@@ -2,7 +2,7 @@
 echo "Cloning dependencies"
 rm -rf AnyKernel
 git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
-git clone --depth=1 https://github.com/LEVI-HACKERMAN-69/AnyKernel3-r5x/tree/r5x.git -b RMX2030 AnyKernel
+git clone --depth=1 https://github.com/LEVI-HACKERMAN-69/AnyKernel3 -b r5x AnyKernel
 git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
 git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
 echo "Done"
@@ -13,8 +13,8 @@ KERNEL_DIR=$(pwd)
 export PATH=$KERNEL_DIR/clang/bin:$PATH
 export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')"
 export ARCH=arm64
-export KBUILD_BUILD_HOST=Nexus
-export KBUILD_BUILD_USER="eun0115"
+export KBUILD_BUILD_HOST=Ackerman
+export KBUILD_BUILD_USER="HARAJIT"
 # sticker plox
 function sticker() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
