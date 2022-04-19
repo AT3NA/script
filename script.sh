@@ -37,7 +37,7 @@ function push() {
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>realme sdm710 (rm710)</b> | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
+        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>realme r5x (r5x)</b> | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
 }
 # Fin Error
 function finerr() {
@@ -51,7 +51,7 @@ function finerr() {
 # Compile plox
 function compile() {
 
-    make O=out ARCH=arm64 RMX1971_defconfig
+    make O=out ARCH=arm64 r5x_defconfig
     make -j$(nproc --all) O=out \
                       LLVM=1 \
                       PATH=$KERNEL_DIR/clang/bin:$PATH \
