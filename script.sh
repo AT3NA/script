@@ -19,12 +19,12 @@ export KBUILD_BUILD_USER="HARAJIT"
 function sticker() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
         -d sticker="CAACAgEAAxkBAAEnKnJfZOFzBnwC3cPwiirjZdgTMBMLRAACugEAAkVfBy-aN927wS5blhsE" \
-        -d chat_id=$chat_id
+        -d chat_id=-1001395450655
 }
 # Send info plox channel
 function sendinfo() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
-        -d chat_id="$chat_id" \
+        -d chat_id="$-1001395450655" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=html" \
         -d text="<b>Test Kernel</b>%0ABuild started on <code>vivizCI</code>%0AFor device <b>realme sdm710</b> (rm710)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code> (master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b> Beta"
@@ -34,7 +34,7 @@ function push() {
     cd AnyKernel
     ZIP=$(echo *.zip)
     curl -F document=@$ZIP "https://api.telegram.org/bot$token/sendDocument" \
-        -F chat_id="$chat_id" \
+        -F chat_id="-1001395450655" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>realme r5x (r5x)</b> | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
@@ -42,7 +42,7 @@ function push() {
 # Fin Error
 function finerr() {
     curl -s -X POST "https://api.telegram.org/bot$token/sendMessage"
-        -d chat_id="$chat_id" \
+        -d chat_id="-1001395450655" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=markdown" \
         -d text="Build throw an error(s)"
@@ -51,7 +51,7 @@ function finerr() {
 # Compile plox
 function compile() {
 
-    make O=out ARCH=arm64 r5x_defconfig
+    make O=out ARCH=arm64 RMX1911_defconfig
     make -j$(nproc --all) O=out \
                       LLVM=1 \
                       PATH=$KERNEL_DIR/clang/bin:$PATH \
